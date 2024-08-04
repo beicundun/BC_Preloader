@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<title>BC_Preloader デモ</title>
+<script type="text/javascript" src="js/bc_preloader.js" charset="UTF-8"></script>
+<script type="text/javascript">
+// 1つ目のプリロード（親ローダー）
+var ldr1;
+var urls1 = ['img/image1.gif', 'img/image2.gif'];
+var onComplete1 = function(){
+  var targetArea = document.getElementById('by-parent');
+  for (var i = 0; i < ldr1.imgs.length; i++) {
+    var loadedImg = targetArea.appendChild(ldr1.imgs[i]);
+    console.log(loadedImg);
+    targetArea.appendChild(loadedImg);
+  };
+	alert('1つめのロード完了');
+};
+ldr1 = new BC_Preloader(urls1, false, onComplete1);
+
+// 2つ目のプリロード（子ローダー）
+var ldr2;
+var urls2 = ['img/image3.gif', 'img/image4.gif'];
+var onComplete2 = function(){
+  var targetArea = document.getElementById('by-child');
+  for (var i = 0; i < ldr2.imgs.length; i++) {
+    var loadedImg = targetArea.appendChild(ldr2.imgs[i]);
+    targetArea.appendChild(loadedImg);
+  };
+	alert('2つめのロード完了');
+};
+ldr2 = new BC_Preloader(urls2, false, onComplete2);
+
+// 親ローダーに子ローダーを追加
+ldr1.add(ldr2);
+// 親ローダーから開始
+ldr1.start();
+</script>
+</head>
+<body>
+<h1>デモ</h1>
+<h2>親ローダーにロードされた画像</h2>
+<div id="by-parent"></div>
+<h2>子ローダーにロードされた画像</h2>
+<div id="by-child"></div>
+</body>
+</html>
