@@ -21,4 +21,6 @@ HTML、CSS、JavaScriptのみでFlashライクなコンテンツを作りたい�
 
 ページの表示高速化やユーザー体感速度の高速化などを実現できました。
 
+## Demo
 
+[https://beicundun.github.io/BC_Preloader/](https://beicundun.github.io/BC_Preloader/)
